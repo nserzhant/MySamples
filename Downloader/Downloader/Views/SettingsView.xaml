@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:prop="clr-namespace:Downloader.Properties"
+                    xmlns:vm="clr-namespace:Downloader.ViewModels"
+                    xmlns:local="clr-namespace:Downloader">
+    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+        <DataTemplate.Resources>
+            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        </DataTemplate.Resources>
+        <Grid Background="#3D808080" 
+              Visibility="{Binding IsDisplayed,Converter={StaticResource booleanToVisibilityConverter}}">
+            <Border Width="400" Height="250" CornerRadius="5" 
+                    BorderThickness="2" BorderBrush="#FF979292"
+                    SnapsToDevicePixels="True">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="9" Color="Gray"/>
+                </Border.Effect>
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFC0BCBC" Offset="0"/>
+                        <GradientStop Color="#FF807979" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Width="400" Height="250">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="100"/>
+                        <ColumnDefinition Width="2*" MinWidth="250"/>
+                    </Grid.ColumnDefinitions>
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" 
+                           Content="{x:Static prop:Resources.SettingsProxyIP}"/>
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="1" 
+                           Content="{x:Static prop:Resources.SettingsProxyPort}"/>
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" 
+                           Content="{x:Static prop:Resources.SettingsThreads}"/>
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="3" 
+                           Content="{x:Static prop:Resources.SettingsSavingFolder}"/>
+                    <TextBox Grid.Column="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                             Text="{Binding ProxyIP}"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                             Text="{Binding ProxyPort}"/>
+                    <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="120,0,0,0" 
+                              IsChecked="{Binding UseProxy,Mode=TwoWay}" 
+                              Content="{x:Static prop:Resources.SettingsUseProxy}"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" SelectedIndex="{Binding ThreadsCount}">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                        <ComboBoxItem>4</ComboBoxItem>
+                        <ComboBoxItem>5</ComboBoxItem>
+                        <ComboBoxItem>6</ComboBoxItem>
+                        <ComboBoxItem>7</ComboBoxItem>
+                        <ComboBoxItem>8</ComboBoxItem>
+                        <ComboBoxItem>9</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="3" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding SavingFolder}"/>
+                    <Button Grid.Column="1" Grid.Row="3" Width="70" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="170,0,0,0" 
+                            Command="{Binding SelectSavePathCommand}" 
+                            Content="{x:Static prop:Resources.SettingsSelect}"/>
+                    <Button Grid.Row="4" Margin="-100,0,0,0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="70" Height="30" 
+                            Command="{Binding SaveSettingsCommand}" 
+                            Content="{x:Static prop:Resources.SettingsSave}"/>
+                    <Button Grid.Row="4" Margin="100,0,0,0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="70" Height="30" 
+                            Command="{Binding CloseSettingsCommand}" 
+                            Content="{x:Static prop:Resources.SettingsClose}"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

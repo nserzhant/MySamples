@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="SilverlightPlayer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:SilverlightPlayer.Controls"
+    mc:Ignorable="d"    
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <controls:CustomSilverlightPlayer HorizontalAlignment="Stretch" Margin="0" x:Name="player1" VerticalAlignment="Stretch"/>
+    </Grid>
+</UserControl>

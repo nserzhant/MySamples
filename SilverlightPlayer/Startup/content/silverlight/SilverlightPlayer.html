@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<!-- saved from url=(0014)about:internet -->
+<head>
+    <title>SilverlightPlayer</title>
+    <style type="text/css">
+ html, body {
+		background: #5C5C5C;
+		height: 100%;
+		overflow: auto;
+	}
+    body {
+	    padding: 0;
+	    margin: 0;
+    }
+    #silverlightControlHost {
+	    height: 480px;
+	    text-align:center;
+	    width:640px;
+	    vertical-align:top;
+    }
+	#main{
+	width: 80%;
+	background: #8EAA7D;
+	margin-left: 10%;
+	margin-top: 20px;
+	height: 840px;
+	border: 1px solid black;
+	padding: 10px;
+}
+	.mess{
+	border: 1px #009999 solid;
+	width: 100%;
+	background-color: #96B4A6;
+	margin-right: 20px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+    </style>
+    <script type="text/javascript" src="Silverlight.js"></script>
+	<script type="text/javascript" src="jquery-1.5.1.js"></script>
+    <script type="text/javascript">
+        function UpdateSilverlight() {
+            //try{
+            var plugin = document.getElementById("plugin");
+            plugin.content.bridge.UpdateTriggers();
+            //}catch(e){alert(e);}
+        }
+    </script>
+</head>
+<body>
+    <div id="main">
+    	<div id="header" class="mess">
+    		<h4  style="text-align:center;color:#0000FF;">Silverlight player example</h4>
+    	</div>
+    	<br/>
+    	<div class="mess">
+    		<form name="compose" action="/upload" method="post" enctype="multipart/form-data" id="compose_form">
+	    		<table style="width:100%;">
+	    			<tr>
+	    				<td style="width:200px;">
+	    					<div style="height:700px;">
+	    					  <input type="file" value="Select" name="FName" id="FName"/>
+	                   		  <br />
+	                  		  <input type="submit" value="Upload"/>
+	    					</div>
+	    				</td>
+	    				<td>
+	    					<div id="silverlightControlHost" style="height:700px;">
+							    <script type="text/javascript">
+							        var host = document.getElementById("silverlightControlHost");
+							        Silverlight.createObjectEx({
+							            source: "SilverlightPlayer.xap",
+							            parentElement: host,
+							            id: "plugin",
+							            properties: {
+							                height: "480",
+							                width: "640",
+							                version: "4.0"
+							            },
+							            events: {}
+							        });
+								</script>
+			                 </div>
+	    				</td>
+	    				<td style="width:200px;">
+	    					<div style="height:700px;">
+		    					<div style="height:200px;">
+		                      	  <div id="containerUpd" style="border-style:none; height:200px;overflow:hidden;"></div>
+		                    	</div>
+		                    	<br />
+		                   	    <a href="" id="t_update">refresh links</a><br />
+	    					</div>
+	    				</td>
+	    			</tr>
+	    		</table>
+	    		<script type="text/javascript">
+	    		    function UpdateLinks() {
+	    		    }
+	    		    $("#t_update").live("click", function () {
+	    		        $.get("/Filelist", function (response) {
+	    		            $("#containerUpd").replaceWith('<div id="containerUpd" style="border-style:none; height:200px;overflow:hidden;">' + response + '</div>');
+	    		            UpdateSilverlight();
+	    		        });
+	    		        return false;
+	    		    });
+	    		    $(document).ready(function () {
+	    		        $.get("/Filelist", function (response) {
+	    		            $("#containerUpd").replaceWith('<div id="containerUpd" style="border-style:none; height:200px;overflow:hidden;">' + response + '</div>');
+	    		            UpdateSilverlight();
+	    		        });
+	    		        return false;
+	    		    });
+	            </script>
+            </form>
+    	</div>
+	</div>  
+</body>
+</html>

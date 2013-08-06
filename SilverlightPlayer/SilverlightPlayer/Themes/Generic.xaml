@@ -1,0 +1,20 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:SilverlightPlayer">
+    
+    <Color x:Key="ColorBtn_1_1_def">#FFCEECF2</Color>
+    <Color x:Key="ColorBtn_1_2_def">#FF66B0C1</Color>
+    <Color x:Key="ColorBtn_1_3_def">#FF66BBCE</Color>
+    <Color x:Key="ColorBtn_1_4_def">#FF7DDEF4</Color>
+    <Color x:Key="ColorBtn_border_def">#FF2C8EA2</Color>
+    <Color x:Key="ColorBtn_2_1_def">#FFB2E0FC</Color>
+    <Color x:Key="ColorBtn_2_2_def">#FF5FA2C7</Color>
+    <Color x:Key="ColorBtnOpacity_2_1_def">White</Color>
+    <Color x:Key="ColorBtnOpacity_2_2_def">#30FFFFFF</Color>
+    <Color x:Key="ColorBtnOpacity_2_3_def">Transparent</Color>
+    <Color x:Key="ColorBtn_1_3_over">#FF90E2F4</Color>
+    <Color x:Key="ColorBtnOpacity_2_2_over">Transparent</Color>
+    <Color x:Key="ColorBtnBorder_1_1_dwn">#FF45CBE6</Color>
+</ResourceDictionary>
