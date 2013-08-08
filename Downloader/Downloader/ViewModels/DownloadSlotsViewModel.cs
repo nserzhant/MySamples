@@ -10,10 +10,11 @@ using System.Threading;
 namespace Downloader.ViewModels
 {
     /// <summary>
-    /// Represents of simple downloading block of whoole data (which can be only one for downloading file)
+    /// Responsible for management of downloading slots (calculate possible count,stops and starts all of them)
     /// </summary>
     public interface IDownloadSlotsViewModel
     {
+
         event Action DownloadCompleted;
         event Action DownloadFailed;
         event Action DownloadProgressChanged;

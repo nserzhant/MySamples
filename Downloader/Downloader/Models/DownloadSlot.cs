@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Downloader.Models
 {
+    /// <summary>
+    /// Represent state of single downloading content block
+    /// </summary>
     public class DownloadSlot
     {
         /// <summary>
