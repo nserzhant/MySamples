@@ -5,31 +5,72 @@ using System.Text;
 
 namespace Downloader.Models
 {
+    /// <summary>
+    /// Network - related information about downloading content
+    /// </summary>
     public interface IUriSource
     {
+        /// <summary>
+        /// Gets network path to the downloaded source
+        /// </summary>
         string Uri { get; }
     }
 
+    /// <summary>
+    /// Filesystem related information for downloading content
+    /// </summary>
     public interface IFilePathSource
     {
+        /// <summary>
+        /// Gets or sets forlder where file have to be saved
+        /// </summary>
         string SaveFolderPath { get; }
+
+        /// <summary>
+        /// Gets or sets downloading file name
+        /// </summary>
         string FileName { get; }
     }
 
+    /// <summary>
+    /// DataSource for downloading content components
+    /// </summary>
     public interface IDownloadSlotsModel : IUriSource, IFilePathSource
     {
+        /// <summary>
+        /// Gets downloading parts info for whoole download
+        /// </summary>
         List<DownloadSlot> DownloadSlots { get; }
+
+        /// <summary>
+        /// Gets or sets downloading file name
+        /// </summary>
         string FileName { get; set; }
     }
 
-    public interface IDownloadModel
+    /// <summary>
+    /// DataSource for managing downliading/saving source's components
+    /// </summary>
+    public interface IDownloadModel : IFilePathSource
     {
+        /// <summary>
+        /// Gets or sets network path to the downloaded source
+        /// </summary>
         string Uri { get; set; }
-        string SaveFolderPath { get; }
+
+        /// <summary>
+        /// Gets or sets saving file name
+        /// </summary>
         string FileName { get; set; }
+        /// <summary>
+        /// Gets or sets current download state
+        /// </summary>
         DownloadState State { get; set; }
     }
 
+    /// <summary>
+    /// Represents state of single download
+    /// </summary>
     public class Download : IDownloadModel, IDownloadSlotsModel
     {
         #region IDownloadModel members
@@ -38,7 +79,7 @@ namespace Downloader.Models
 
         public string SaveFolderPath { get; set; }
 
-        public string FileName { get; set; }        
+        public string FileName { get; set; }
 
         public DownloadState State { get; set; }
 

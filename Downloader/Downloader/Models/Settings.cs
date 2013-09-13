@@ -6,26 +6,63 @@ using System.IO;
 
 namespace Downloader.Models
 {
+    /// <summary>
+    /// Represents state of current application settings
+    /// </summary>
     public interface ISettings : ISaveFileSettings, INetworkSettings
     {
+        /// <summary>
+        /// Load current application settings
+        /// </summary>
         void Load();
+
+        /// <summary>
+        /// Saves current application settings
+        /// </summary>
         void Save();
     }
 
+    /// <summary>
+    /// File system related settings
+    /// </summary>
     public interface ISaveFileSettings
     {
+        /// <summary>
+        /// Gets or sets path where new files would be saved
+        /// </summary>
         string SavingFolder { get; set; }
     }
 
+    /// <summary>
+    /// Network related settings
+    /// </summary>
     public interface INetworkSettings
     {
+        /// <summary>
+        /// Gets or sets IP address of proxy server which will be using for connection to network 
+        /// </summary>
         string ProxyIP { get; set; }
+        /// <summary>
+        /// Gets or sets port for Proxy server
+        /// </summary>
         int ProxyPort { get; set; }
+        /// <summary>
+        /// Gets or sets maximum numbers of threads content downloads simultaneously for a single file
+        /// </summary>
         int ThreadsCount { get; set; }
+        /// <summary>
+        /// Gets or sets should proxy settings be taking into account
+        /// </summary>
         bool UseProxy { get; set; }
+        /// <summary>
+        /// Gets or sets maximum bytes count for single block downloaded from network source
+        /// </summary>
         int BlockSize { get; set; }
     }
 
+    /// <summary>
+    /// Used for saving application settings in User-scoped application settings
+    /// </summary>
     public class AppConfigSettings : ISettings
     {
         private readonly int DEFAULT_BLOCK_SIZE = 10000;

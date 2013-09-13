@@ -83,8 +83,8 @@ namespace WebService
             try
             {
                 string output = htmlXmlFormatter.GetFileListAsTable(new DirectoryInfo(contentSubPath).GetFiles(), contentSubPath); //string.Concat("<table>", tableContent, "</table>");
-                WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-                return new MemoryStream(Encoding.Default.GetBytes(output));
+                WebOperationContext.Current.OutgoingResponse.ContentType = "text/html;";
+                return new MemoryStream(Encoding.UTF8.GetBytes(output));
             }
             catch (Exception ex)
             {
@@ -162,7 +162,7 @@ namespace WebService
             byte[] buff = new byte[2048];
             while ((readed = inputStream.Read(buff, 0, 2048)) > 0)
             {
-                string content = Encoding.Default.GetString(buff);
+                string content = Encoding.UTF8.GetString(buff);
                 int fileContentStringStart = content.IndexOf("\r\n\r\n");
                 fileName = getUploadedFileName(content.Substring(0, fileContentStringStart));
                 if (!string.IsNullOrEmpty(fileName))
